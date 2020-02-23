@@ -1,0 +1,32 @@
+function orbitalPeriod(arr) {
+  const GM = 398600.4418;
+  const earthRadius = 6367.4447;
+
+  let newArr = [...arr];
+
+  for (let i of newArr) {
+    i.orbitalPeriod = doMath(i.avgAlt);
+    delete i.avgAlt;
+  }
+  function doMath(k) {
+    return Math.round((2 * Math.PI * Math.sqrt((Math.pow(k + earthRadius, 3) / GM))));
+ }
+  return newArr;
+}
+
+orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553},{name: "iss", avgAlt: 413.6}]);
+
+
+
+/*
+{T=2\pi {\sqrt {\frac {𝑎^{3}}{\mu }}}}
+where:
+
+a is the orbit's semi-major axis
+μ = GM is the standard gravitational parameter
+G is the gravitational constant,
+M is the mass of the more massive body.
+
++ If the orbit is circular, then 𝑎 in that formula is the orbital radius, which is the sum of altitude and Earth's radius.
+
+*/

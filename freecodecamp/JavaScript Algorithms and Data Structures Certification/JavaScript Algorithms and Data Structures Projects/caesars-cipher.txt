@@ -1,0 +1,21 @@
+function rot13(str) { // LBH QVQ VG!
+  let strArr = str.split("");
+
+  for (let index in strArr) {
+    strArr[index] = convertChar(strArr[index].charCodeAt(0));
+    console.log(strArr[index] + "\n"); 
+  }
+
+  function convertChar(chCode) {
+    console.log("before: " + chCode);
+    if (chCode >= 65 && chCode <= 90) {
+      chCode = (chCode + 13 > 90) ? chCode - 13 : chCode + 13;
+    }
+
+    return String.fromCharCode(chCode);
+  }
+  return strArr.join("");
+}
+
+// Change the inputs below to test
+console.log("Output: " + rot13("SERR PBQR PNZC"));

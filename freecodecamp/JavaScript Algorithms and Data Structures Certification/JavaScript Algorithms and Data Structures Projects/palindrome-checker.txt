@@ -1,0 +1,13 @@
+function palindrome(str) {
+  let newStr = str.toLowerCase().match(/[a-z*|0-9*]/g);
+  let strLen = newStr.length;
+  
+  for (let i = 0; i < newStr.length / 2; i++) {
+    if (newStr[i] != newStr[--strLen]) {
+      return false;
+    }   
+  }
+  return true;
+}
+
+palindrome("1 eye for of 1 eye.");
