@@ -1,0 +1,30 @@
+function steamrollArray(arr) {
+  // I'm a steamroller, baby
+
+  let newArr = [];
+
+  function iterateTable(table, index) {
+    
+    if (index >= table.length) {
+      return [];
+    } else {
+        if (typeof table[index] == "object") {
+          if (table[index].length == undefined) {
+            newArr.push({});
+          } else {
+            iterateTable(table[index], 0);
+          } 
+        } else {
+          newArr.push(table[index]);
+        }
+        iterateTable(table, index + 1);
+    }
+  }
+
+  let arrCopy = [...arr];
+  iterateTable(arrCopy, 0);
+
+  return newArr;
+}
+
+steamrollArray([1, {}, [3, [[4]]]]);
