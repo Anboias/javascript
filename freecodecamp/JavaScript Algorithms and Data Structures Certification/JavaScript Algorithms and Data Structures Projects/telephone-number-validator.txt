@@ -1,0 +1,47 @@
+function telephoneCheck(str) {
+  let result = true;
+  let strArr = str.replace(" ","").split("");
+
+  function hasCorrectParant() {
+    let indexBack = strArr.length - 1;
+
+    if (strArr[0] == "(" && strArr[indexBack] == ")") {
+      return false;
+    }
+
+    const tempArr = strArr.filter((item) => {
+      return item == "(" || item == ")";
+    });
+
+    if (tempArr.length % 2 != 0) {
+      return false;
+    }
+
+    for (let i = 0; i <= tempArr.length - 2; i += 2) {
+      if(tempArr[i] != "(" || tempArr[i + 1] != ")") {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function hasCorrectChars() {
+    return str.match(/[^0-9-\s\(\)]/g) == null ? true : false;
+  }
+
+  function hasGoodLength() {
+    let len = str.match(/[0-9]/g).length;
+
+    if (len == 10 || len == 11 && strArr[0] == "1") {
+      return true;
+    }
+    return false;
+  }
+
+  // Good luck!
+  return hasGoodLength() && hasCorrectChars() && hasCorrectParant();
+}
+
+
+let inpText = "1 555 555 5555";
+console.log("Final: " + telephoneCheck(inpText));
